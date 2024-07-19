@@ -46,6 +46,7 @@ function AgentSlider() {
       </div>
     );
   }
+
   const handlePrev = () => {
     setStartIndex(
       (prevIndex) => (prevIndex - 1 + agents.length) % agents.length
@@ -73,7 +74,7 @@ function AgentSlider() {
         )})`,
       }}
     >
-      <div className="flex flex-col absolute top-20 right-6 gap-2 transition-colors z-50">
+      <div className="scale-50 -top-10 absolute lg:top-20 lg:right-6 lg:scale-100 gap-2 transition-colors z-50">
         <div className="flex flex-col">
           <span className="text-[#EAEEB2] uppercase ">
             {selectedAgent.role.displayName}
@@ -195,7 +196,7 @@ function AgentSlider() {
         />
       </div>
 
-      <div className="absolute bottom-28 flex gap-1 z-20" onWheel={handleWheel}>
+      <div className="hidden lg:flex absolute bottom-28 gap-1 z-20" onWheel={handleWheel}>
         {agents
           .slice(startIndex, startIndex + 13)
           .concat(
@@ -229,6 +230,7 @@ function AgentSlider() {
             );
           })}
       </div>
+      
 
       <div className="z-50 absolute h-full flex items-end">
         <div className="flex">
