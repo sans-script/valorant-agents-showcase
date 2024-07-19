@@ -67,7 +67,7 @@ function AgentSlider() {
 
   return (
     <div
-      className="flex items-center justify-center w-screen h-screen transition-colors"
+      className="flex items-center justify-center w-screen h-screen transition-colors overflow-hidden"
       style={{
         background: `linear-gradient(150deg, ${createGradient(
           selectedAgent.backgroundGradientColors
