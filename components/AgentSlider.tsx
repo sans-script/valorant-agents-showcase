@@ -24,7 +24,7 @@ function AgentSlider() {
   if (loading) {
     return (
       <div className="flex items-center justify-center w-screen h-screen transition-all bg-val">
-        <h1 className="font-val text-[120px] text-white">Loading...</h1>
+        <h1 className="font-val text-[10px] lg:text-[120px] text-white">Loading...</h1>
       </div>
     );
   }
@@ -32,7 +32,7 @@ function AgentSlider() {
   if (error) {
     return (
       <div className="flex items-center justify-center w-screen h-screen transition-all bg-val">
-        <h1 className="font-val text-[120px] text-white">{error}</h1>
+        <h1 className="font-val text-[10px] lg:text-[120px] text-white">{error}</h1>
       </div>
     );
   }

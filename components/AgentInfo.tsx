@@ -8,17 +8,13 @@ const AgentInfo = ({ selectedAgent }: any) => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center w-screen h-screen transition-all bg-val">
-        <h1 className="font-val text-[120px] text-white">Loading...</h1>
-      </div>
+        null
     );
   }
 
   if (error) {
     return (
-      <div className="flex items-center justify-center w-screen h-screen transition-all bg-val">
-        <h1 className="font-val text-[120px] text-white">{error}</h1>
-      </div>
+        null
     );
   }
 
