@@ -1,7 +1,10 @@
-import Slider from "@/components/Slider";
+import AgentSlider from "@/components/AgentSlider";
 
 export default function Home() {
   return (
-    <Slider/>
+    <main className="flex w-screen h-screen">
+          <AgentSlider/>
+    </main>
+
   )
 }
