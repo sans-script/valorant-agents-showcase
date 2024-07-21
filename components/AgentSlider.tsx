@@ -7,6 +7,7 @@ import useAgents from "@/hooks/useAgents";
 import useAgentNavigation from "@/hooks/useAgentNavigation";
 import useMouseWheel from "@/hooks/useMouseWheel";
 import AgentInfo from "./AgentInfo";
+import SelectedAgent from "./SelectedAgent";
 
 function AgentSlider() {
   const { agents, loading, error } = useAgents();
@@ -24,7 +25,9 @@ function AgentSlider() {
   if (loading) {
     return (
       <div className="flex items-center justify-center w-screen h-screen transition-all bg-val">
-        <h1 className="font-val text-[10px] lg:text-[120px] text-white">Loading...</h1>
+        <h1 className="font-val text-[10px] lg:text-[120px] text-white">
+          Loading...
+        </h1>
       </div>
     );
   }
@@ -32,7 +35,9 @@ function AgentSlider() {
   if (error) {
     return (
       <div className="flex items-center justify-center w-screen h-screen transition-all bg-val">
-        <h1 className="font-val text-[10px] lg:text-[120px] text-white">{error}</h1>
+        <h1 className="font-val text-[10px] lg:text-[120px] text-white">
+          {error}
+        </h1>
       </div>
     );
   }
@@ -48,34 +53,17 @@ function AgentSlider() {
         )})`,
       }}
     >
-
-
-      <div className="scale-75 lg:scale-100 absolute -top-10 lg:top-8 lg:right-4  z-50">
+      <div className="hidden lg:flex absolute -top-10 lg:top-8 lg:right-4  z-50">
         <AgentInfo selectedAgent={selectedAgent} />
       </div>
 
-      <div className="flex absolute h-[900px] left-8 bottom-1 -top-14 opacity-50">
-        <Image
-          key={selectedAgent.uuid}
-          src={selectedAgent.background}
-          width={1000}
-          height={1000}
-          alt={selectedAgent.displayName}
-        />
-      </div>
 
-      <div className="flex pt-[150px] z-10">
-        <Image
-          key={selectedAgent.uuid}
-          src={selectedAgent.fullPortrait}
-          width={1200}
-          height={1200}
-          alt={selectedAgent.displayName}
-          className="transition-fast"
-        />
-      </div>
+      <SelectedAgent selectedAgent={selectedAgent} />
 
-      <div className="hidden absolute bottom-28 lg:flex gap-1 z-20" onWheel={handleWheel}>
+      <div
+        className="hidden absolute bottom-20 lg:flex gap-1 z-20"
+        onWheel={handleWheel}
+      >
         {agents
           .slice(startIndex, startIndex + 13)
           .concat(
@@ -110,8 +98,7 @@ function AgentSlider() {
           })}
       </div>
 
- 
-      <div className="z-50 absolute bottom-6 lg:bottom-0 h-full flex items-end">
+      <div className="z-50 absolute bottom-2 lg:bottom-0 h-full flex items-end">
         <div className="flex">
           <button
             className="cursor-pointer w-12 h-12 text-white glass-effect-button flex items-center justify-center"

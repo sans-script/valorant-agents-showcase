@@ -32,6 +32,10 @@
     background: hsla(0, 0%, 100%, 0.1); 
     backdrop-filter: blur(15px);
 }
+.glass-effect-button-abilities {
+    background: hsla(0, 0%, 100%, 0.414); 
+    backdrop-filter: blur(15px);
+}
 .transition-fast{
     animation: slideInFromRight 0.3s ease-out forwards;
 }
