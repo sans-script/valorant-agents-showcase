@@ -1,49 +1,58 @@
-# Valorant Agent Slider in React
+# README
 
-## Overview
+## AgentSlider Component
 
-This repo features a React component designed to replicate the agent collection screen from the popular game *Valorant*. It includes a slider effect and pagination to navigate through a list of agents. The component showcases various aspects of React's functionality, such as state management, side effects, and event handling.
+### Overview
+
+This Next.js website is designed to replicate the agent collection screen from the game Valorant. It features a slider that displays agents with their respective abilities and information, providing a visually engaging and immersive user experience.
 
 ![screencapture-valorant-agents-showcase-vercel-app-2024-07-21-11_34_27](https://github.com/user-attachments/assets/7165e340-d6c8-4fca-8ff7-0c01fdfa9089)
 
-## Components
+### Features
 
-### `AgentSlider`
+- **Agent Collection Display**: Showcases a list of agents, complete with icons, abilities, and detailed information.
+- **Pagination and Navigation**: Users can navigate through the agents using buttons or mouse wheel, with a seamless circular pagination.
+- **Dynamic Styling**: Background and visual effects adapt based on the currently selected agent.
 
-The `AgentSlider` component is the main feature of this project. It retrieves agent data from an API, manages the state of the currently selected agent, and handles navigation through the agents.
+### React Concepts Applied
 
-#### Key Features:
-- **Data Fetching:** Uses the `fetchAgents` function to retrieve agent data from an external API (`https://valorant-api.com/v1/agents?isPlayableCharacter=true`).
+#### 1. **State Management**
 
-- **State Management:** Utilizes React's `useState` for managing the list of agents, the currently selected agent, and the starting index for pagination.
+The `useState` hook is used to manage the component's state:
+- `agents`: Contains the list of fetched agents.
+- `selectedAgentIndex`: Tracks the currently selected agent's index.
+- `startIndex`: Manages the starting index for the visible subset of agents.
 
-- **Side Effects:** Uses `useEffect` to load agents when the component mounts and update the displayed agents when the `startIndex` changes.
+#### 2. **Side Effects**
 
-- **Event Handling:** Implements handlers for navigating through agents using buttons and mouse wheel events.
+The `useEffect` hook handles side effects:
+- **Data Fetching**: Fetches agent data from an external API when the component mounts.
+- **Pagination Update**: Updates the visible subset of agents and the `selectedAgentIndex` based on the `startIndex` and the total list of agents.
 
-### `Slider`
+#### 3. **Event Handling**
 
-The `Slider` component is a wrapper around the `AgentSlider` component. It centers the `AgentSlider` component within its container, ensuring proper alignment.
+- **Mouse Wheel**: Enables navigation through the agent list using the mouse wheel.
+- **Button Clicks**: Allows navigation through "Prev" and "Next" buttons.
 
-## React Concepts Applied
+#### 4. **Dynamic Styling**
 
-- **State Management:** The `useState` hook is used to manage various pieces of state, including the list of agents (`agents`), the index of the currently selected agent (`selectedAgentIndex`), and the start index for pagination (`startIndex`).
+- **Background Gradient**: The background is dynamically set based on the selected agent's gradient colors using inline styles.
+- **Agent Highlighting**: The border and opacity of agent icons are adjusted based on whether they are currently selected.
 
-- **Side Effects:** The `useEffect` hook handles data fetching and updates to the component's state based on changes in dependencies (e.g., `startIndex` and `agents`).
+### 5. **Component Composition**
 
-- **Event Handling:** Event listeners are added to handle user interactions, such as clicking buttons to navigate through agents and using the mouse wheel for scrolling through the list.
+- **AgentSlider Component**: Manages the slider's display logic, including agent selection and pagination.
+- **AgentInfo Component**: Displays detailed information about the selected agent.
+- **SelectedAgent Component**: Showcases the currently selected agent prominently.
+- **Hooks**: Custom hooks (`useAgents`, `useAgentNavigation`, `useMouseWheel`) manage data fetching, navigation logic, and mouse wheel events.
 
-- **Conditional Rendering:** The component conditionally renders different UI elements based on the state, such as displaying a loading message while data is being fetched or showing agent details once data is available.
+### Pagination and Selection
 
-- **Dynamic Styling:** Inline styles and Tailwind CSS classes are used to dynamically style components based on the current state, such as applying a gradient background to match the selected agent's colors.
+The `AgentSlider` component implements circular pagination to display a subset of agents, creating a continuous scrolling effect:
 
-## How It Works
+1. **Slicing and Concatenating**: The list of agents is sliced to show a fixed number of agents (e.g., 13). If the end of the list is reached, it wraps around to the beginning.
+2. **Updating Selection**: The `selectedAgentIndex` is updated to reflect the center of the visible subset of agents, ensuring that the currently selected agent is always centered.
 
-1. **Data Fetching:** On component mount, the `fetchAgents` function is called to fetch the list of agents from the API.
-2. **Pagination and Selection:** The list of agents is sliced and concatenated to show a subset of agents in a circular manner. 
+### Conclusion
 
-3. **Navigation:** Users can navigate through the agents using the Prev and Next buttons or by scrolling the mouse wheel. This updates the `startIndex`, causing the component to re-render with the new set of agents.
-
-4. **Rendering:** The component renders the selected agent's details, including their portrait, abilities, and background. It also displays navigation controls and a gradient background based on the selected agent's properties.
-
-This component offers a rich, interactive UI experience that mimics the look and feel of the Valorant agent collection screen, utilizing various React features to manage and display data dynamically.
+The `AgentSlider` component combines several advanced React concepts to create a dynamic and engaging user interface. By leveraging state management, side effects, event handling, dynamic styling, and custom hooks, the component provides a seamless and immersive experience for viewing and interacting with agents of Valorant.
