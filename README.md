@@ -4,6 +4,8 @@
 
 This repo features a React component designed to replicate the agent collection screen from the popular game *Valorant*. It includes a slider effect and pagination to navigate through a list of agents. The component showcases various aspects of React's functionality, such as state management, side effects, and event handling.
 
+![screencapture-valorant-agents-showcase-vercel-app-2024-07-21-11_34_27](https://github.com/user-attachments/assets/7165e340-d6c8-4fca-8ff7-0c01fdfa9089)
+
 ## Components
 
 ### `AgentSlider`
