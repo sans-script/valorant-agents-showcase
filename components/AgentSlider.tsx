@@ -8,11 +8,18 @@ import useAgentNavigation from "@/hooks/useAgentNavigation";
 import useMouseWheel from "@/hooks/useMouseWheel";
 import AgentInfo from "./AgentInfo";
 import SelectedAgent from "./SelectedAgent";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 function AgentSlider() {
   const { agents, loading, error } = useAgents();
-  const { selectedAgentIndex, handlePrev, handleNext, startIndex } =
-    useAgentNavigation(agents);
+  const {
+    selectedAgentIndex,
+    handlePrev,
+    handleNext,
+    startIndex,
+    handleAgentClick,
+  } = useAgentNavigation(agents);
 
   const handleWheel = useMouseWheel((event) => {
     if (event.deltaY < 0) {
@@ -57,7 +64,6 @@ function AgentSlider() {
         <AgentInfo selectedAgent={selectedAgent} />
       </div>
 
-
       <SelectedAgent selectedAgent={selectedAgent} />
 
       <div
@@ -82,7 +88,8 @@ function AgentSlider() {
                   isMiddleAgent
                     ? "border-white opacity-100"
                     : "border-transparent opacity-70"
-                } hover:border-white p-[2px]`}
+                } hover:border-white p-[2px] cursor-pointer`}
+                onClick={() => handleAgentClick(index)}
               >
                 <div className="border-2 border-[#0FF] p-[2px]">
                   <Image
@@ -104,11 +111,11 @@ function AgentSlider() {
             className="cursor-pointer w-12 h-12 text-white glass-effect-button flex items-center justify-center"
             onClick={handlePrev}
           >
-            Prev
+            <ArrowBackIosIcon />
           </button>
 
           <div className="text-white tracking-wide flex items-center justify-center w-24 glass-effect">
-            <span>
+            <span className="text-xl">
               {selectedAgentIndex + 1} / {agents.length}
             </span>
           </div>
@@ -117,7 +124,7 @@ function AgentSlider() {
             className="cursor-pointer w-12 h-12 text-white glass-effect-button flex items-center justify-center"
             onClick={handleNext}
           >
-            Next
+            <ArrowForwardIosIcon />
           </button>
         </div>
       </div>

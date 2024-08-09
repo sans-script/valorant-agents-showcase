@@ -23,10 +23,39 @@ const useAgentNavigation = (agents: any[], initialIndex = 0) => {
   };
 
   const handleNext = () => {
-    setStartIndex((prevIndex) => (prevIndex + 1) % agents.length);
+    setStartIndex((nextIndex) => (nextIndex + 1) % agents.length);
   };
 
-  return { selectedAgentIndex, handlePrev, handleNext, startIndex, setStartIndex };
+  const handleAgentClick = (clickedIndex: number) => {
+    const middleIndex = 6; // O índice do agente do meio
+    const steps = clickedIndex - middleIndex;
+  
+    // Função auxiliar para animar os passos
+    const animateSteps = (steps: number, direction: 'prev' | 'next') => {
+      if (steps <= 0) return; // Se não houver mais passos, sair
+  
+      // Chamar a função apropriada (handlePrev ou handleNext)
+      if (direction === 'prev') {
+        handlePrev();
+      } else {
+        handleNext();
+      }
+  
+      // Chamar animateSteps novamente após um delay
+      setTimeout(() => {
+        animateSteps(steps - 1, direction);
+      }, 100); // Ajuste o tempo aqui conforme necessário
+    };
+  
+    // Iniciar a animação
+    if (steps < 0) {
+      animateSteps(Math.abs(steps), 'prev');
+    } else if (steps > 0) {
+      animateSteps(steps, 'next');
+    }
+  };
+
+  return { selectedAgentIndex, handlePrev, handleNext, startIndex, setStartIndex, handleAgentClick };
 };
 
 export default useAgentNavigation;
